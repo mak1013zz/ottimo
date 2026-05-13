@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cafe Ottimo | Authentic Cuisine in Peshawar</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; color: #1a1a1a; background: #fff; }
+
+  /* NAV */
+  nav { position: fixed; top: 0; width: 100%; background: rgba(10,8,5,0.96); backdrop-filter: blur(10px); z-index: 999; padding: 18px 5%; display: flex; justify-content: space-between; align-items: center; }
+  .nav-logo { font-family: 'Playfair Display', serif; color: #c9a84c; font-size: 22px; font-weight: 700; letter-spacing: 1px; }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a { color: #ccc; text-decoration: none; font-size: 14px; transition: color 0.2s; }
+  .nav-links a:hover { color: #c9a84c; }
+  .nav-cta { background: #c9a84c; color: #000; padding: 9px 22px; border-radius: 6px; font-size: 14px; font-weight: 600; text-decoration: none; transition: background 0.2s; }
+  .nav-cta:hover { background: #b8943d; }
+
+  /* HERO */
+  .hero { min-height: 100vh; background: linear-gradient(to bottom, rgba(10,8,5,0.7) 0%, rgba(10,8,5,0.5) 50%, rgba(10,8,5,0.85) 100%), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1600&q=80') center/cover no-repeat; display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 5%; }
+  .hero-content { max-width: 700px; }
+  .hero-badge { display: inline-block; border: 1px solid rgba(201,168,76,0.5); color: #c9a84c; font-size: 12px; font-weight: 500; padding: 6px 18px; border-radius: 20px; margin-bottom: 24px; letter-spacing: 2px; text-transform: uppercase; }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(42px, 7vw, 80px); color: #fff; line-height: 1.1; margin-bottom: 20px; }
+  .hero h1 span { color: #c9a84c; }
+  .hero p { font-size: 17px; color: rgba(255,255,255,0.75); line-height: 1.8; margin-bottom: 36px; font-weight: 300; max-width: 560px; margin-left: auto; margin-right: auto; }
+  .hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 52px; }
+  .btn-gold { background: #c9a84c; color: #000; padding: 14px 32px; border-radius: 8px; font-size: 15px; font-weight: 600; text-decoration: none; transition: all 0.2s; }
+  .btn-gold:hover { background: #b8943d; transform: translateY(-1px); }
+  .btn-outline { border: 1px solid rgba(255,255,255,0.3); color: #fff; padding: 14px 32px; border-radius: 8px; font-size: 15px; font-weight: 400; text-decoration: none; transition: all 0.2s; }
+  .btn-outline:hover { border-color: #c9a84c; color: #c9a84c; }
+  .hero-stats { display: flex; gap: 48px; justify-content: center; flex-wrap: wrap; padding-top: 36px; border-top: 1px solid rgba(255,255,255,0.1); }
+  .stat-num { font-family: 'Playfair Display', serif; font-size: 30px; color: #c9a84c; font-weight: 700; }
+  .stat-label { font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 2px; letter-spacing: 0.5px; }
+
+  /* SECTIONS */
+  section { padding: 90px 5%; }
+  .section-tag { font-size: 11px; font-weight: 600; color: #c9a84c; letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 12px; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: clamp(30px, 4vw, 46px); font-weight: 700; letter-spacing: -0.5px; line-height: 1.2; margin-bottom: 16px; }
+  .section-sub { font-size: 16px; color: #666; line-height: 1.8; max-width: 540px; font-weight: 300; }
+  .center { text-align: center; }
+  .center .section-sub { margin: 0 auto; }
+
+  /* ABOUT */
+  .about { background: #faf8f4; }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center; margin-top: 52px; }
+  .about-img { border-radius: 16px; overflow: hidden; height: 440px; }
+  .about-img img { width: 100%; height: 100%; object-fit: cover; }
+  .about-quote { background: #1a1a1a; border-radius: 12px; padding: 28px; margin-top: 28px; border-left: 3px solid #c9a84c; }
+  .about-quote p { font-family: 'Playfair Display', serif; font-size: 15px; color: #e0d5c0; line-height: 1.8; font-style: italic; }
+  .features { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+  .feature-tag { background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.3); color: #a07c2a; font-size: 13px; padding: 7px 16px; border-radius: 20px; font-weight: 500; }
+
+  /* MENU */
+  .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; margin-top: 52px; }
+  .menu-card { background: #fff; border-radius: 14px; overflow: hidden; border: 1px solid #eee; transition: all 0.3s; }
+  .menu-card:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(0,0,0,0.1); border-color: #c9a84c; }
+  .menu-card-img { height: 180px; overflow: hidden; }
+  .menu-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+  .menu-card:hover .menu-card-img img { transform: scale(1.05); }
+  .menu-card-body { padding: 20px; }
+  .menu-card-body h3 { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 600; margin-bottom: 6px; }
+  .menu-card-body p { font-size: 13px; color: #888; line-height: 1.6; margin-bottom: 12px; }
+  .price-tag { font-size: 14px; font-weight: 600; color: #c9a84c; }
+
+  /* EXPERIENCE */
+  .experience { background: #0d0b08; }
+  .experience .section-title { color: #fff; }
+  .experience .section-tag { color: #c9a84c; }
+  .exp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; margin-top: 52px; }
+  .exp-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 32px 24px; text-align: center; transition: all 0.3s; }
+  .exp-card:hover { border-color: rgba(201,168,76,0.4); background: rgba(201,168,76,0.05); }
+  .exp-icon { font-size: 32px; margin-bottom: 16px; }
+  .exp-card h3 { font-family: 'Playfair Display', serif; font-size: 17px; color: #fff; margin-bottom: 10px; }
+  .exp-card p { font-size: 13px; color: #888; line-height: 1.7; }
+
+  /* REVIEWS */
+  .reviews { background: #faf8f4; }
+  .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 52px; }
+  .review-card { background: #fff; border-radius: 14px; padding: 28px; border: 1px solid #eee; }
+  .stars { color: #c9a84c; font-size: 16px; margin-bottom: 14px; letter-spacing: 2px; }
+  .review-card p { font-size: 14px; color: #555; line-height: 1.8; font-style: italic; margin-bottom: 18px; }
+  .reviewer { display: flex; align-items: center; gap: 12px; }
+  .reviewer-avatar { width: 38px; height: 38px; border-radius: 50%; background: rgba(201,168,76,0.15); display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 14px; color: #a07c2a; }
+  .reviewer-name { font-size: 14px; font-weight: 600; }
+  .reviewer-source { font-size: 12px; color: #999; }
+  .ratings-row { display: flex; gap: 24px; flex-wrap: wrap; margin-top: 40px; justify-content: center; }
+  .rating-box { text-align: center; background: #fff; border: 1px solid #eee; border-radius: 12px; padding: 20px 32px; }
+  .rating-num { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 700; color: #c9a84c; }
+  .rating-src { font-size: 13px; color: #999; margin-top: 4px; }
+  .rating-votes { font-size: 11px; color: #bbb; }
+
+  /* CONTACT */
+  .contact-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-top: 52px; align-items: start; }
+  .info-card { background: #1a1a1a; border-radius: 14px; padding: 36px; }
+  .info-item { display: flex; gap: 16px; align-items: flex-start; margin-bottom: 28px; }
+  .info-icon { width: 42px; height: 42px; background: rgba(201,168,76,0.15); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+  .info-item h4 { font-size: 12px; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+  .info-item p { font-size: 15px; color: #fff; font-weight: 400; }
+  .info-item a { color: #c9a84c; text-decoration: none; font-size: 15px; }
+  .social-row { display: flex; gap: 12px; margin-top: 8px; }
+  .social-btn { background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.2); color: #c9a84c; padding: 8px 18px; border-radius: 6px; font-size: 13px; text-decoration: none; transition: all 0.2s; }
+  .social-btn:hover { background: rgba(201,168,76,0.2); }
+  .reservation-form { display: flex; flex-direction: column; gap: 14px; }
+  .reservation-form input, .reservation-form textarea, .reservation-form select { width: 100%; padding: 13px 16px; border: 1px solid #e0e0e0; border-radius: 8px; font-size: 14px; font-family: 'Inter', sans-serif; outline: none; transition: border 0.2s; color: #1a1a1a; }
+  .reservation-form input:focus, .reservation-form textarea:focus, .reservation-form select:focus { border-color: #c9a84c; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .reservation-form button { background: #c9a84c; color: #000; border: none; padding: 14px; border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer; transition: background 0.2s; font-family: 'Inter', sans-serif; }
+  .reservation-form button:hover { background: #b8943d; }
+
+  /* FOOTER */
+  footer { background: #0a0805; color: #555; padding: 40px 5%; }
+  .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+  .footer-logo { font-family: 'Playfair Display', serif; color: #c9a84c; font-size: 20px; }
+  footer p { font-size: 13px; }
+  .footer-links { display: flex; gap: 20px; }
+  .footer-links a { color: #555; text-decoration: none; font-size: 13px; transition: color 0.2s; }
+  .footer-links a:hover { color: #c9a84c; }
+
+  /* WHATSAPP */
+  .wa-float { position: fixed; bottom: 28px; right: 28px; background: #25d366; color: #fff; width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 26px; text-decoration: none; box-shadow: 0 4px 20px rgba(37,211,102,0.4); z-index: 999; transition: transform 0.2s; }
+  .wa-float:hover { transform: scale(1.1); }
+
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .about-grid, .contact-wrap { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .hero-stats { gap: 28px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Cafe Ottimo</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Reserve a Table</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">✦ Peshawar's Finest Dining</div>
+    <h1>Where Every Bite Tells a <span>Story</span></h1>
+    <p>Authentic cuisines and tantalising tastes crafted to make your dining experience joyful and truly memorable. Feel the luxury you've been waiting for.</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-gold">Reserve a Table</a>
+      <a href="#menu" class="btn-outline">Explore Menu</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="stat-num">4.9</div><div class="stat-label">Facebook rating</div></div>
+      <div><div class="stat-num">4.5</div><div class="stat-label">Foodpanda rating</div></div>
+      <div><div class="stat-num">4.2</div><div class="stat-label">Google rating</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="about">
+  <div class="about-grid">
+    <div>
+      <div class="section-tag">Our story</div>
+      <div class="section-title">Luxury Taste. Warm Hospitality.</div>
+      <p style="font-size:16px; color:#555; line-height:1.9; margin-bottom:24px; font-weight:300;">Nestled in the heart of Hayatabad, Cafe Ottimo was born from a passion to bring the world's authentic flavours to the people of Peshawar. Every dish we serve carries a promise — of quality, of taste, and of an experience you won't forget.</p>
+      <div class="about-quote">
+        <p>"In an effort to bring authentic cuisines and tantalising tastes for the people of Peshawar, we humbly present to you, Cafe Ottimo! We hope to make your dining experience joyful and memorable."</p>
+      </div>
+      <div class="features">
+        <span class="feature-tag">🍽️ All You Can Eat</span>
+        <span class="feature-tag">🌿 Vegan Options</span>
+        <span class="feature-tag">🌳 Outdoor Seating</span>
+        <span class="feature-tag">Open till 2am</span>
+        <span class="feature-tag">Rs 1,000 – 4,000 per person</span>
+      </div>
+    </div>
+    <div>
+      <div class="about-img">
+        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80" alt="Cafe Ottimo dining" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="menu">
+  <div class="center">
+    <div class="section-tag">What we serve</div>
+    <div class="section-title">A Journey of Flavours</div>
+    <p class="section-sub">From rich traditional dishes to international favourites — our menu has something for every palate.</p>
+  </div>
+  <div class="menu-grid">
+    <div class="menu-card">
+      <div class="menu-card-img">
+        <img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=600&q=80" alt="Signature Karahi" />
+      </div>
+      <div class="menu-card-body">
+        <h3>Signature Karahi</h3>
+        <p>Slow-cooked in traditional spices, our karahi is a celebration of authentic Pakistani flavour.</p>
+        <span class="price-tag">From Rs 1,200</span>
+      </div>
+    </div>
+    <div class="menu-card">
+      <div class="menu-card-img">
+        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&q=80" alt="Continental Grill" />
+      </div>
+      <div class="menu-card-body">
+        <h3>Continental Grill</h3>
+        <p>Perfectly grilled steaks, chicken and seafood with house sauces and seasonal sides.</p>
+        <span class="price-tag">From Rs 1,500</span>
+      </div>
+    </div>
+    <div class="menu-card">
+      <div class="menu-card-img">
+        <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&q=80" alt="Vegan Delights" />
+      </div>
+      <div class="menu-card-body">
+        <h3>Vegan Delights</h3>
+        <p>Fresh, colourful and full of flavour — our vegan menu never compromises on taste.</p>
+        <span class="price-tag">From Rs 800</span>
+      </div>
+    </div>
+    <div class="menu-card">
+      <div class="menu-card-img">
+        <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?w=600&q=80" alt="Desserts" />
+      </div>
+      <div class="menu-card-body">
+        <h3>Artisan Desserts</h3>
+        <p>End your meal on a sweet note with our handcrafted desserts and signature pastries.</p>
+        <span class="price-tag">From Rs 400</span>
+      </div>
+    </div>
+    <div class="menu-card">
+      <div class="menu-card-img">
+        <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&q=80" alt="Specialty Drinks" />
+      </div>
+      <div class="menu-card-body">
+        <h3>Specialty Drinks</h3>
+        <p>Hot brews, cold fusions and fresh juices — the perfect companion to every meal.</p>
+        <span class="price-tag">From Rs 300</span>
+      </div>
+    </div>
+    <div class="menu-card">
+      <div class="menu-card-img">
+        <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=600&q=80" alt="All You Can Eat" />
+      </div>
+      <div class="menu-card-body">
+        <h3>All You Can Eat Buffet</h3>
+        <p>Our legendary buffet spread — endless options, unlimited servings, unforgettable value.</p>
+        <span class="price-tag">Special pricing available</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience" class="experience">
+  <div class="center">
+    <div class="section-tag">The Ottimo experience</div>
+    <div class="section-title" style="color:#fff;">More Than Just a Meal</div>
+  </div>
+  <div class="exp-grid">
+    <div class="exp-card">
+      <div class="exp-icon">🌳</div>
+      <h3>Outdoor Seating</h3>
+      <p>Dine under the open sky in our beautifully designed outdoor seating area — perfect for evenings in Peshawar.</p>
+    </div>
+    <div class="exp-card">
+      <div class="exp-icon">🍽️</div>
+      <h3>All You Can Eat</h3>
+      <p>Feast without limits on our extensive buffet spread featuring Pakistani and international cuisines.</p>
+    </div>
+    <div class="exp-card">
+      <div class="exp-icon">🌿</div>
+      <h3>Vegan Friendly</h3>
+      <p>A dedicated vegan menu crafted with fresh, wholesome ingredients for our plant-based guests.</p>
+    </div>
+    <div class="exp-card">
+      <div class="exp-icon">🌙</div>
+      <h3>Open Late</h3>
+      <p>We're open until 2am — because great food and good company shouldn't have a curfew.</p>
+    </div>
+  </div>
+</section>
+
+<section id="reviews" class="reviews">
+  <div class="center">
+    <div class="section-tag">What people say</div>
+    <div class="section-title">Loved Across Every Platform</div>
+  </div>
+  <div class="ratings-row">
+    <div class="rating-box">
+      <div class="rating-num">4.9</div>
+      <div class="rating-src">Facebook</div>
+      <div class="rating-votes">35 votes</div>
+    </div>
+    <div class="rating-box">
+      <div class="rating-num">4.5</div>
+      <div class="rating-src">Foodpanda</div>
+      <div class="rating-votes">90 votes</div>
+    </div>
+    <div class="rating-box">
+      <div class="rating-num">4.2</div>
+      <div class="rating-src">Google</div>
+      <div class="rating-votes">Google reviews</div>
+    </div>
+  </div>
+  <div class="reviews-grid" style="margin-top:40px;">
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p>"Absolutely amazing experience. The food was authentic, the ambiance was perfect and the outdoor seating was a lovely touch. Will definitely be coming back!"</p>
+      <div class="reviewer">
+        <div class="reviewer-avatar">AK</div>
+        <div><div class="reviewer-name">Ali Khan</div><div class="reviewer-source">Google Review</div></div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p>"Best cafe in Hayatabad by far. The all you can eat buffet is incredible value and the variety is outstanding. Highly recommended for families and groups."</p>
+      <div class="reviewer">
+        <div class="reviewer-avatar">SA</div>
+        <div><div class="reviewer-name">Sara Ahmad</div><div class="reviewer-source">Facebook Review</div></div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="stars">★★★★½</div>
+      <p>"Loved the vegan options — finally a restaurant in Peshawar that takes plant-based food seriously. The drinks are amazing too. Great late night spot!"</p>
+      <div class="reviewer">
+        <div class="reviewer-avatar">ZM</div>
+        <div><div class="reviewer-name">Zara Malik</div><div class="reviewer-source">Foodpanda Review</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="section-tag">Find us</div>
+  <div class="section-title">Visit Us or Make a Reservation</div>
+  <div class="contact-wrap">
+    <div class="info-card">
+      <div class="info-item">
+        <div class="info-icon">📍</div>
+        <div><h4>Address</h4><p>Deans Heights, Phase 2 Hayatabad, Peshawar, 25000</p></div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon">📞</div>
+        <div><h4>Phone</h4><a href="tel:0913046913">(091) 3046913</a></div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon">🕐</div>
+        <div><h4>Hours</h4><p style="color:#fff;">Open 8am – 2am daily<br/><span style="color:#c9a84c; font-size:13px;">Busiest around 9pm</span></p></div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon">💰</div>
+        <div><h4>Price Range</h4><p>Rs 1,000 – 4,000 per person</p></div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon">📱</div>
+        <div>
+          <h4>Follow Us</h4>
+          <div class="social-row">
+            <a href="https://www.instagram.com/cafeottimo.pk/" target="_blank" class="social-btn">Instagram</a>
+            <a href="https://www.facebook.com/cafeottimo.pk/" target="_blank" class="social-btn">Facebook</a>
+            <a href="https://www.foodpanda.pk/restaurant/vije/cafe-ottimo-vije" target="_blank" class="social-btn">Foodpanda</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <p style="font-size:15px; color:#555; margin-bottom:24px; line-height:1.7;">Book your table in advance or send us a message — we'll confirm within the hour.</p>
+      <form class="reservation-form" onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <input type="text" placeholder="Your name" required />
+          <input type="tel" placeholder="Phone number" required />
+        </div>
+        <div class="form-row">
+          <input type="date" required />
+          <input type="time" required />
+        </div>
+        <select>
+          <option value="">Number of guests</option>
+          <option>1–2 guests</option>
+          <option>3–5 guests</option>
+          <option>6–10 guests</option>
+          <option>10+ guests</option>
+        </select>
+        <select>
+          <option value="">Seating preference</option>
+          <option>Indoor seating</option>
+          <option>Outdoor seating</option>
+          <option>No preference</option>
+        </select>
+        <textarea placeholder="Any special requests or dietary requirements..."></textarea>
+        <button type="submit">Reserve My Table</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Cafe Ottimo</div>
+    <p>© 2025 Cafe Ottimo. Deans Heights, Hayatabad, Peshawar.</p>
+    <div class="footer-links">
+      <a href="https://www.instagram.com/cafeottimo.pk/" target="_blank">Instagram</a>
+      <a href="https://www.facebook.com/cafeottimo.pk/" target="_blank">Facebook</a>
+      <a href="https://www.foodpanda.pk/restaurant/vije/cafe-ottimo-vije" target="_blank">Foodpanda</a>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/920913046913" class="wa-float" target="_blank">💬</a>
+
+<script>
+  function handleSubmit(e) {
+    e.preventDefault();
+    alert('Thank you! Your reservation request has been received. We will confirm within the hour. See you at Cafe Ottimo!');
+    e.target.reset();
+  }
+  window.addEventListener('scroll', () => {
+    document.querySelector('nav').style.background =
+      window.scrollY > 60 ? 'rgba(10,8,5,0.99)' : 'rgba(10,8,5,0.96)';
+  });
+</script>
+</body>
+</html>
